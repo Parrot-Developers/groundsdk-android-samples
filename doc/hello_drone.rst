@@ -2,7 +2,7 @@ GroundSdk Hello Drone Tutorial
 ==============================
 
 *GroundSdk Hello Drone Tutorial* is a step-by-step guide that helps you
-develop an Android application using GroundSdk Android 1.1.0.
+develop an Android application using GroundSdk Android 1.1.1.
 This application is able to connect to an Anafi drone and a Skycontroller 3
 remote control, display the battery level and video stream, and take off or
 land the drone.
@@ -10,7 +10,7 @@ land the drone.
 At the end of this tutorial, you will be able to:
 
 - Setup your developement environement
-- Setup your project to use GroundSdk Android 1.1.0
+- Setup your project to use GroundSdk Android 1.1.1
 - Connect to a drone
 - Display drone connection state
 - Display drone battery level
@@ -22,7 +22,7 @@ At the end of this tutorial, you will be able to:
 
 The full project is available `here`_.
 
-.. Note:: This tutorial is based on GroundSdk Android version `1.1.0`.
+.. Note:: This tutorial is based on GroundSdk Android version `1.1.1`.
 
 .. _here : https://github.com/Parrot-Developers/groundsdk-android-samples/tree/master/HelloDrone
 
