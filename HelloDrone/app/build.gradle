@@ -41,7 +41,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // GroundSdk (1.1.1) dependencies
-    implementation 'com.parrot.drone.groundsdk:groundsdk:1.1.1'
-    runtimeOnly 'com.parrot.drone.groundsdk:arsdkengine:1.1.1'
+    // GroundSdk dependencies
+    implementation 'com.parrot.drone.groundsdk:groundsdk:1.1.2'
+    runtimeOnly 'com.parrot.drone.groundsdk:arsdkengine:1.1.2'
 }
