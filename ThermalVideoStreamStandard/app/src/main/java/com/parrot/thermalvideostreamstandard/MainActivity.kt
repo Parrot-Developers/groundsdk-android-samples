@@ -445,6 +445,11 @@ class MainActivity : AppCompatActivity() {
                 // Update drone connection state view.
                 droneStateTxt.text = it.connectionState.toString()
             }
+
+            // send a thermal render settings.
+            thermalCtrlRef?.get()?.let { thermalCtrl ->
+                sendThermalRenderSettings(thermalCtrl)
+            }
         }
     }
 
@@ -518,10 +523,7 @@ class MainActivity : AppCompatActivity() {
 
                 // In order to the drone video recording look like the local render,
                 // send a thermal render settings.
-                if (!droneThermalRenderInitialized) {
-                    sendThermalRenderSettings(it)
-                    droneThermalRenderInitialized = true
-                }
+                sendThermalRenderSettings(it)
             }
         }
     }
@@ -580,8 +582,12 @@ class MainActivity : AppCompatActivity() {
      * @param thermalCtrl: thermal control.
      */
     private fun sendThermalRenderSettings(thermalCtrl: ThermalControl) {
-
         // To optimize, do not send settings that have not changed.
+        // Send thermal rendering and palette only if the drone is connected.
+        if (droneThermalRenderInitialized ||
+            droneStateRef?.get()?.connectionState != DeviceState.ConnectionState.CONNECTED) {
+            return
+        }
 
         // Send rendering mode.
         thermalCtrl.sendRendering(thermalRenderingModeGsdk())
@@ -596,6 +602,8 @@ class MainActivity : AppCompatActivity() {
         tproc.palette.toGsdk()?.let { paletteGsdk ->
             thermalCtrl.sendPalette(paletteGsdk)
         }
+
+        droneThermalRenderInitialized = true
     }
 
     /**
