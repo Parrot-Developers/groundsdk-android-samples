@@ -1,5 +1,5 @@
-GroundSdk Android Samples Documentation
-=======================================
+Ground SDK Android Samples Documentation
+========================================
 
 .. toctree::
 

@@ -1,16 +1,15 @@
-GroundSdk Hello Drone Tutorial
-==============================
+Ground SDK Hello Drone Tutorial
+===============================
 
-*GroundSdk Hello Drone Tutorial* is a step-by-step guide that helps you
-develop an Android application using GroundSdk Android |version|.
-This application is able to connect to an Anafi drone and a Skycontroller 3
-remote control, display the battery level and video stream, and take off or
-land the drone.
+*Ground SDK Hello Drone Tutorial* is a step-by-step guide that helps you
+develop an Android application using Ground SDK Android |version|.
+This application is able to connect to an ANAFI drone and a Skycontroller remote control, 
+display the battery level and video stream, and take off or land the drone.
 
 At the end of this tutorial, you will be able to:
 
 - Setup your developement environement
-- Setup your project to use GroundSdk Android |version|
+- Setup your project to use Ground SDK Android |version|
 - Connect to a drone
 - Display drone connection state
 - Display drone battery level
@@ -22,7 +21,7 @@ At the end of this tutorial, you will be able to:
 
 The full project is available `here`_.
 
-.. Note:: This tutorial is based on GroundSdk Android version |version|.
+.. Note:: This tutorial is based on Ground SDK Android version |version|.
 
 .. _here : https://github.com/Parrot-Developers/groundsdk-android-samples/tree/master/HelloDrone
 
@@ -42,18 +41,18 @@ Before starting this tutorial, you have to:
 Setup project
 ^^^^^^^^^^^^^
 
-First you need to configure your project to use GroundSdk Android.
+First you need to configure your project to use Ground SDK Android.
 
 For this purpose, open the application `app/build.gradle` file, and add
-the GroundSdk Android dependencies:
+the Ground SDK Android dependencies:
 
 .. literalinclude:: ../HelloDrone/app/build.gradle
-   :lines: 34-47
-   :emphasize-lines: 11-13
+   :lines: 34-46
+   :emphasize-lines: 10-12
 
-This allows to downlaod and link GroundSdk AAR to the project.
+This allows to downlaod and link Ground SDK AAR to the project.
 
-To make your project compatible with GroundSdk you need to:
+To make your project compatible with Ground SDK you need to:
 
 - Increase the minimun Android SDK version supported by your project
 - Add the Java 8 compilation compatibility
@@ -61,8 +60,8 @@ To make your project compatible with GroundSdk you need to:
 In the same file:
 
 .. literalinclude:: ../HelloDrone/app/build.gradle
-   :lines: 7-32
-   :emphasize-lines: 6-7,14-18
+   :lines: 5-32
+   :emphasize-lines: 5-6, 13-20
 
 Your project setup is ready, let's start coding!
 
@@ -81,8 +80,8 @@ file, and add:
 This `GroundSdk session`_ keeps and manages all GroundSdk references, according
 to the Android Activity lifecycle.
 
-.. _obtain a GroundSdk session: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/ManagedGroundSdk.html#obtainSession(android.app.Activity)
-.. _GroundSdk session: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/ManagedGroundSdk.html
+.. _obtain a GroundSdk session: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-managed-ground-sdk/obtain-session.html
+.. _GroundSdk session: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-managed-ground-sdk/index.html
 
 Drone connection
 ^^^^^^^^^^^^^^^^
@@ -106,10 +105,10 @@ using the new one.
    :lines: 65-67, 80, 126-143, 147-153, 171-174, 187-191, 203-208, 227
    :emphasize-lines: 2-3, 18-30, 35-39, 41-45
 
-.. _AutoConnection: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/facility/AutoConnection.html
-.. _get the facility: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/GroundSdk.html#getFacility(java.lang.Class)
-.. _start it: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/facility/AutoConnection.html#start()
-.. _drone: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/facility/AutoConnection.html#getDrone()
+.. _AutoConnection: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.facility/-auto-connection/index.html
+.. _get the facility: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-ground-sdk/get-facility.html
+.. _start it: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.facility/-auto-connection/start.html
+.. _drone: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.facility/-auto-connection/get-drone.html
 
 Drone monitoring
 ^^^^^^^^^^^^^^^^
@@ -152,9 +151,9 @@ When you have finished with it and you want to stop monitoring it,
    :lines: 65-69, 80, 188-193, 203-212, 227-228, 279-292
    :emphasize-lines: 4-5, 11-12, 19-22, 25-
 
-.. _drone state: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/Drone.html#getState(com.parrot.drone.groundsdk.Ref.Observer)
-.. _ConnectionState: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/DeviceState.html#getConnectionState()
-.. _close: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/Ref.html#close()
+.. _drone state: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device/-drone/get-state.html
+.. _ConnectionState: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device/-device-state/get-connection-state.html
+.. _close: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-ref/close.html
 
 Drone battery monitoring
 ------------------------
@@ -168,9 +167,9 @@ In order to display the drone battery level, monitor the drone
    :lines: 65-71, 80, 188-196, 203-215, 227-228, 294-307
    :emphasize-lines: 6-7, 16-17, 29-30, 33-
 
-.. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/BatteryInfo.html
-.. _getInstrument: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/Instrument.Provider.html#getInstrument(java.lang.Class,com.parrot.drone.groundsdk.Ref.Observer)
-.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/BatteryInfo.html#getBatteryLevel()
+.. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/index.html
+.. _getInstrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-instrument/-provider/get-instrument.html
+.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/get-battery-level.html
 
 Reset drone user interface
 --------------------------
@@ -223,10 +222,10 @@ and update the button view according to the availability of these actions
    :lines: 65-73, 80, 176-183, 186-199, 203-218, 227-228, 309-366
    :emphasize-lines: 8-9, 18, 31-32, 47-48, 51-67, 69-
 
-.. _Manual Copter Piloting Interface: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/ManualCopterPilotingItf.html
-.. _getPilotingItf: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/PilotingItf.Provider.html#getPilotingItf(java.lang.Class,com.parrot.drone.groundsdk.Ref.Observer)
-.. _canTakeOff: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/ManualCopterPilotingItf.html#canTakeOff()
-.. _canLand: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/ManualCopterPilotingItf.html#canLand()
+.. _Manual Copter Piloting Interface: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-manual-copter-piloting-itf/index.html
+.. _getPilotingItf: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-piloting-itf/-provider/get-piloting-itf.html
+.. _canTakeOff: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-manual-copter-piloting-itf/can-take-off.html
+.. _canLand: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-manual-copter-piloting-itf/can-land.html
 
 Take off / landing requests
 ---------------------------
@@ -239,8 +238,8 @@ according to their availabilities.
    :lines: 72-73, 80, 368-383
    :emphasize-lines: 8-18
 
-.. _take off: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/ManualCopterPilotingItf.html#takeOff()
-.. _land: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/pilotingitf/ManualCopterPilotingItf.html#land()
+.. _take off: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-manual-copter-piloting-itf/take-off.html
+.. _land: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.pilotingitf/-manual-copter-piloting-itf/land.html
 
 Video stream
 ^^^^^^^^^^^^
@@ -264,7 +263,7 @@ Then get it in your activity.
    :lines: 89-95, 102-110, 115-117, 119-124
    :emphasize-lines: 2-3, 14
 
-.. _GsdkStreamView: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/stream/GsdkStreamView.html
+.. _GsdkStreamView: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.stream/-gsdk-stream-view/index.html
 
 Video display
 -------------
@@ -283,10 +282,10 @@ In order to display the live video stream in the GsdkStreamView, you need to:
    :lines: 65-80, 176-277
    :emphasize-lines: 10-15, 25-26, 42-43, 61-67, 70-
 
-.. _stream server peripheral: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/peripheral/StreamServer.html
-.. _Monitor its live stream: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/peripheral/StreamServer.html#live(com.parrot.drone.groundsdk.Ref.Observer)
-.. _Start to play: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/peripheral/stream/CameraLive.html#play()
-.. _Attach this stream to your GsdkStreamView: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/stream/GsdkStreamView.html#setStream(com.parrot.drone.groundsdk.stream.Stream)
+.. _stream server peripheral: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.peripheral/-stream-server/index.html
+.. _Monitor its live stream: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.peripheral/-stream-server/live.html
+.. _Start to play: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.peripheral.stream/-camera-live/play.html
+.. _Attach this stream to your GsdkStreamView: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.stream/-gsdk-stream-view/set-stream.html
 
 Remote control
 ^^^^^^^^^^^^^^
@@ -305,8 +304,8 @@ You can use the `auto connection facility`_ as with the drone, and get the
    :lines: 81-83, 88, 126-175, 385-388, 392-397, 403-408, 416
    :emphasize-lines: 1-3, 35-50, 55-71
 
-.. _auto connection facility: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/facility/AutoConnection.html
-.. _remote control: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/facility/AutoConnection.html#getRemoteControl()
+.. _auto connection facility: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.facility/-auto-connection/index.html
+.. _remote control: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.facility/-auto-connection/get-remote-control.html
 
 Remote control user interface
 -----------------------------
@@ -341,12 +340,12 @@ Finally, `close`_ the remote control references to stop monitoring them.
    :lines: 81-88, 394-446
    :emphasize-lines: 4-7, 13-17, 24-30, 33-61
 
-.. _remote control state: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/RemoteControl.html#getState(com.parrot.drone.groundsdk.Ref.Observer)
-.. _connectionState: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/DeviceState.html#getConnectionState()
-.. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/BatteryInfo.html
-.. _getInstrument: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/Instrument.Provider.html#getInstrument(java.lang.Class,com.parrot.drone.groundsdk.Ref.Observer)
-.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/device/instrument/BatteryInfo.html#getBatteryLevel()
-.. _close: https://developer.parrot.com/docs/refdoc-android/com/parrot/drone/groundsdk/Ref.html#close()
+.. _remote control state: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device/-remote-control/get-state.html
+.. _connectionState: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device/-device-state/get-connection-state.html
+.. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/index.html
+.. _getInstrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-instrument/-provider/get-instrument.html
+.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/get-battery-level.html
+.. _close: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-ref/close.html
 
 Full project sources
 ^^^^^^^^^^^^^^^^^^^^
@@ -357,8 +356,8 @@ You can find the full project on `github`_.
 
 Please feel free to ask questions on the `Parrot forum for developers`_.
 
-Wish you all the best with `GroundSdk`_!
+Wish you all the best with `Ground SDK`_!
 
 .. _github : https://github.com/Parrot-Developers/groundsdk-android-samples/tree/master/HelloDrone
 .. _Parrot forum for developers: https://forum.developer.parrot.com/
-.. _GroundSdk: https://developer.parrot.com/
+.. _Ground SDK: https://developer.parrot.com/

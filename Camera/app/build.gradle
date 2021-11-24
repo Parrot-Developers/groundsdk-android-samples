@@ -4,9 +4,8 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
-
     defaultConfig {
-        applicationId "com.parrot.thermalvideostreamembedded"
+        applicationId "com.parrot.camera"
         // Set the minimum SDK version supported by GroundSdk
         minSdkVersion 24
         targetSdkVersion 30

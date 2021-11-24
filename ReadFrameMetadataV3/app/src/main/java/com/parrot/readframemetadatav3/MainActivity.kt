@@ -93,7 +93,7 @@ class ReadFrameMetadataV3 : AppCompatActivity() {
         droneQuatTxt = findViewById(R.id.droneQuatTxt)
 
         // Set stream view overlayer.
-        streamView.setOverlayer2 { overlayContext ->
+        streamView.setOverlayer { overlayContext ->
             // Called at each frame rendering.
 
             // Read drone quaternion from metadata native pointer.

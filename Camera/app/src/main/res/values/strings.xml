@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Camera</string>
+    <string name="drone">Drone</string>
+    <string name="remote">Remote</string>
+    <string name="active">Active</string>
+    <string name="mode">Mode</string>
+    <string name="photo">Photo</string>
+    <string name="recording">Recording</string>
+    <string name="white_balance_temperature">White balance temperature</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="start_photo">Start photo capture</string>
+    <string name="stop_photo">Stop photo capture</string>
+    <string name="start_recording">Start recording</string>
+    <string name="stop_recording">Stop recording</string>
+</resources>
