@@ -1,2 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // Add local repository
+        // Useful only for custom local dependencies
+        maven {
+            url '../../repository'
+        }
+    }
+}
+
 include ':app'
-rootProject.name = 'ReadFrameMetadataV3'
+rootProject.name='ReadFrameMetadataV3'

@@ -91,11 +91,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var streamView: GsdkStreamView
     /** Drone state text view. */
     private lateinit var droneStateTxt: TextView
-    /** Drone battery level text view. */
+    /** Drone battery charge level text view. */
     private lateinit var droneBatteryTxt: TextView
     /** Remote state level text view. */
     private lateinit var rcStateTxt: TextView
-    /** Remote battery level text view. */
+    /** Remote battery charge level text view. */
     private lateinit var rcBatteryTxt: TextView
     /** Take off / land button. */
     private lateinit var takeOffLandBt: Button
@@ -192,8 +192,8 @@ class MainActivity : AppCompatActivity() {
         // Monitor drone state.
         monitorDroneState()
 
-        // Monitor drone battery level.
-        monitorDroneBatteryLevel()
+        // Monitor drone battery charge level.
+        monitorDroneBatteryChargeLevel()
 
         // Monitor piloting interface.
         monitorPilotingInterface()
@@ -292,16 +292,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Monitors current drone battery level.
+     * Monitors current drone battery charge level.
      */
-    private fun monitorDroneBatteryLevel() {
+    private fun monitorDroneBatteryChargeLevel() {
         // Monitor the battery info instrument.
         droneBatteryInfoRef = drone?.getInstrument(BatteryInfo::class.java) {
             // Called when the battery info instrument is available and when it changes.
 
             it?.let {
-                // Update drone battery level view.
-                droneBatteryTxt.text = getString(R.string.percentage, it.batteryLevel)
+                // Update drone battery charge level view.
+                droneBatteryTxt.text = getString(R.string.percentage, it.charge)
             }
         }
     }
@@ -398,8 +398,8 @@ class MainActivity : AppCompatActivity() {
         // Monitor remote state
         monitorRcState()
 
-        // Monitor remote battery level
-        monitorRcBatteryLevel()
+        // Monitor remote battery charge level
+        monitorRcBatteryChargeLevel()
     }
 
     /**
@@ -431,16 +431,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Monitors current remote control battery level.
+     * Monitors current remote control battery charge level.
      */
-    private fun monitorRcBatteryLevel() {
+    private fun monitorRcBatteryChargeLevel() {
         // Monitor the battery info instrument.
         rcBatteryInfoRef = rc?.getInstrument(BatteryInfo::class.java) {
             // Called when the battery info instrument is available and when it changes.
 
             it?.let {
-                // Update drone battery level view.
-                rcBatteryTxt.text = getString(R.string.percentage, it.batteryLevel)
+                // Update drone battery charge level view.
+                rcBatteryTxt.text = getString(R.string.percentage, it.charge)
             }
         }
     }

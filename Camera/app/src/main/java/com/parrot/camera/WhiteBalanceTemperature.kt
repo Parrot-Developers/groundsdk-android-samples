@@ -41,6 +41,7 @@ import com.parrot.drone.groundsdk.device.Drone
 import com.parrot.drone.groundsdk.device.peripheral.MainCamera
 import com.parrot.drone.groundsdk.device.peripheral.camera.CameraWhiteBalance
 import com.parrot.drone.groundsdk.device.peripheral.camera2.Camera
+import com.parrot.drone.groundsdk.device.peripheral.camera2.MainCamera as MainCamera2
 
 /**
  * Sample code to display and change custom white balance temperature, using `MainCamera` and
@@ -53,7 +54,9 @@ class WhiteBalanceTemperature(
     /** Reference to `MainCamera` peripheral. */
     private var mainCameraRef: Ref<MainCamera>? = null
     /** Reference to `camera2.MainCamera` peripheral. */
-    private var mainCamera2Ref: Ref<com.parrot.drone.groundsdk.device.peripheral.camera2.MainCamera>? = null
+    private var mainCamera2Ref: Ref<MainCamera2>? = null
+    /** Index of the currently selected item. */
+    private var selectionIndex = AdapterView.INVALID_POSITION
 
     /**
      * Starts camera peripherals monitoring.
@@ -76,7 +79,7 @@ class WhiteBalanceTemperature(
         // Drones: ANAFI_2
         // Monitor `camera2.MainCamera` peripheral, for drones supporting Camera2 API.
         // We keep camera reference as a class property, otherwise change notifications would stop.
-        mainCamera2Ref = drone.getPeripheral(com.parrot.drone.groundsdk.device.peripheral.camera2.MainCamera::class.java) { camera ->
+        mainCamera2Ref = drone.getPeripheral(MainCamera2::class.java) { camera ->
             // Called when the camera changes, on main thread.
             camera?.let {
                 updateViewCamera2(camera)
@@ -107,6 +110,7 @@ class WhiteBalanceTemperature(
     private fun resetView() {
         whiteBalanceSpinner.isEnabled = false
         whiteBalanceSpinner.adapter = null
+        whiteBalanceSpinner.onItemSelectedListener = null
     }
 
     /**
@@ -128,7 +132,8 @@ class WhiteBalanceTemperature(
         // Set spinner adapter.
         whiteBalanceSpinner.adapter = adapter
         // Tell to spinner the current white balance temperature.
-        whiteBalanceSpinner.setSelection(adapter.getPosition(whiteBalanceTemperature))
+        selectionIndex = adapter.getPosition(whiteBalanceTemperature)
+        whiteBalanceSpinner.setSelection(selectionIndex)
         // Register spinner listener.
         whiteBalanceSpinner.onItemSelectedListener = whiteBalanceSpinnerListener
     }
@@ -139,6 +144,8 @@ class WhiteBalanceTemperature(
      * @param camera camera peripheral
      */
     private fun updateViewCamera2(camera: Camera) {
+        // Get the current white balance mode.
+        val whiteBalanceMode = camera.config[Camera.Config.WHITE_BALANCE_MODE].value
         // Get configuration parameter for white balance temperature.
         val whiteBalanceTemperatureParam = camera.config[Camera.Config.WHITE_BALANCE_TEMPERATURE]
         // Get the set of supported white balance temperatures.
@@ -146,17 +153,27 @@ class WhiteBalanceTemperature(
         // Get the current custom white balance temperature.
         val whiteBalanceTemperature = whiteBalanceTemperatureParam.value
         // Create adapter for white balance temperatures choice.
-        val adapter = ArrayAdapter<Camera.WhiteBalanceTemperature>(whiteBalanceSpinner.context, android.R.layout.simple_spinner_item)
-        // Fill adapter with supported white balance temperatures.
-        adapter.addAll(supportedWhiteBalanceTemperatures)
-        // Enable spinner if white balance is not currently changing.
-        whiteBalanceSpinner.isEnabled = !camera.config.updating
-        // Set spinner adapter.
-        whiteBalanceSpinner.adapter = adapter
-        // Tell to spinner the current white balance temperature.
-        whiteBalanceSpinner.setSelection(adapter.getPosition(whiteBalanceTemperature))
-        // Register spinner listener.
-        whiteBalanceSpinner.onItemSelectedListener = whiteBalanceSpinnerListener
+        val adapter = ArrayAdapter<Camera.WhiteBalanceTemperature>(
+            whiteBalanceSpinner.context, android.R.layout.simple_spinner_item
+        ).apply {
+            // Fill adapter with supported white balance temperatures.
+            addAll(supportedWhiteBalanceTemperatures)
+        }
+        whiteBalanceSpinner.apply {
+            // Enable spinner if white balance is not currently changing.
+            isEnabled = !camera.config.updating
+            // Set spinner adapter.
+            this.adapter = adapter
+            // Tell to spinner the current white balance temperature
+            selectionIndex = adapter.getPosition(whiteBalanceTemperature)
+            setSelection(selectionIndex)
+            if (whiteBalanceMode != Camera.WhiteBalanceMode.CUSTOM) {
+                // in case the camera is not in CUSTOM mode, force it
+                setWhiteBalanceTemperatureCamera2(camera, whiteBalanceTemperature)
+            }
+            // Register spinner listener.
+            onItemSelectedListener = whiteBalanceSpinnerListener
+        }
     }
 
     /**
@@ -203,6 +220,9 @@ class WhiteBalanceTemperature(
     private val whiteBalanceSpinnerListener = object : AdapterView.OnItemSelectedListener {
 
         override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+            // Skip events that are not user-originated
+            if (selectionIndex == pos) return
+
             // Get `MainCamera` peripheral from its reference, if available.
             mainCameraRef?.get()?.let { camera ->
                 // Get white balance temperature selected by user.

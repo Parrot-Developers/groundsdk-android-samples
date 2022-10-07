@@ -3,8 +3,8 @@ Ground SDK Hello Drone Tutorial
 
 *Ground SDK Hello Drone Tutorial* is a step-by-step guide that helps you
 develop an Android application using Ground SDK Android |version|.
-This application is able to connect to an ANAFI drone and a Skycontroller remote control, 
-display the battery level and video stream, and take off or land the drone.
+This application is able to connect to an ANAFI drone and a Skycontroller remote control,
+display the battery charge level and video stream, and take off or land the drone.
 
 At the end of this tutorial, you will be able to:
 
@@ -12,12 +12,12 @@ At the end of this tutorial, you will be able to:
 - Setup your project to use Ground SDK Android |version|
 - Connect to a drone
 - Display drone connection state
-- Display drone battery level
+- Display drone battery charge level
 - Make take off and land the drone
 - Display the video live stream
 - Connect to a remote control
 - Display remote control connection state
-- Display remote control battery level
+- Display remote control battery charge level
 
 The full project is available `here`_.
 
@@ -32,11 +32,11 @@ Before starting this tutorial, you have to:
 
  - `Download Andoid Studio`_
  - `Install Andoid Studio`_
- - `Create a new Kotlin project (Basic Activity)`_
+ - `Create a new Kotlin project (Empty Activity)`_
 
 .. _Download Andoid Studio: https://developer.android.com/studio
 .. _Install Andoid Studio: https://developer.android.com/studio/install
-.. _Create a new Kotlin project (Basic Activity): https://developer.android.com/studio/projects/create-project?hl=en
+.. _Create a new Kotlin project (Empty Activity): https://developer.android.com/studio/projects/create-project?hl=en
 
 Setup project
 ^^^^^^^^^^^^^
@@ -47,21 +47,19 @@ For this purpose, open the application `app/build.gradle` file, and add
 the Ground SDK Android dependencies:
 
 .. literalinclude:: ../HelloDrone/app/build.gradle
-   :lines: 34-46
-   :emphasize-lines: 10-12
+   :lines: 34-48
+   :emphasize-lines: 12-14
 
 This allows to downlaod and link Ground SDK AAR to the project.
 
-To make your project compatible with Ground SDK you need to:
-
-- Increase the minimun Android SDK version supported by your project
-- Add the Java 8 compilation compatibility
+To make your project compatible with Ground SDK you need to increase the minimun Android SDK version
+supported by your project.
 
 In the same file:
 
 .. literalinclude:: ../HelloDrone/app/build.gradle
-   :lines: 5-32
-   :emphasize-lines: 5-6, 13-20
+   :lines: 6-17
+   :emphasize-lines: 6-7
 
 Your project setup is ready, let's start coding!
 
@@ -158,9 +156,9 @@ When you have finished with it and you want to stop monitoring it,
 Drone battery monitoring
 ------------------------
 
-In order to display the drone battery level, monitor the drone
+In order to display the drone battery charge level, monitor the drone
 `battery info instrument`_, using `getInstrument`_, then get its
-`batteryLevel`_.
+`charge`_ level.
 
 .. literalinclude:: ../HelloDrone/app/src/main/java/com/parrot/hellodrone/MainActivity.kt
    :language: kotlin
@@ -169,7 +167,7 @@ In order to display the drone battery level, monitor the drone
 
 .. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/index.html
 .. _getInstrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-instrument/-provider/get-instrument.html
-.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/get-battery-level.html
+.. _charge: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/charge.html
 
 Reset drone user interface
 --------------------------
@@ -291,7 +289,7 @@ Remote control
 ^^^^^^^^^^^^^^
 
 In this section you will see how to connect to a remote control, display its
-connection state and battery level.
+connection state and battery charge level.
 
 Remote control connection
 -------------------------
@@ -331,7 +329,7 @@ As with the drone, set an observer on the `remote control state`_ to display
 its `connectionState`_.
 
 Then monitor the `battery info instrument`_, using
-`getInstrument`_ and display its `batteryLevel`_.
+`getInstrument`_ and display its `charge`_ level.
 
 Finally, `close`_ the remote control references to stop monitoring them.
 
@@ -344,7 +342,7 @@ Finally, `close`_ the remote control references to stop monitoring them.
 .. _connectionState: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device/-device-state/get-connection-state.html
 .. _battery info instrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/index.html
 .. _getInstrument: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-instrument/-provider/get-instrument.html
-.. _batteryLevel: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/get-battery-level.html
+.. _charge: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk.device.instrument/-battery-info/charge.html
 .. _close: https://developer.parrot.com/docs/refdoc-android/groundsdk%207.0.0%20-a-p-i/com.parrot.drone.groundsdk/-ref/close.html
 
 Full project sources
@@ -360,4 +358,4 @@ Wish you all the best with `Ground SDK`_!
 
 .. _github : https://github.com/Parrot-Developers/groundsdk-android-samples/tree/master/HelloDrone
 .. _Parrot forum for developers: https://forum.developer.parrot.com/
-.. _Ground SDK: https://developer.parrot.com/
+.. _Ground SDK: https://www.parrot.com/fr/drones/anafi-ai/technical-documentation/sdk
