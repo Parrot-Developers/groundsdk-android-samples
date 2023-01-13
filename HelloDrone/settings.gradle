@@ -10,11 +10,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Add local repository
-        // Useful only for custom local dependencies
-        maven {
-            url '../../repository'
-        }
     }
 }
 
