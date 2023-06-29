@@ -42,6 +42,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // GroundSdk dependencies
-    implementation 'com.parrot.drone.groundsdk:groundsdk:7.6.+'
-    runtimeOnly 'com.parrot.drone.groundsdk:arsdkengine:7.6.+'
+    implementation 'com.parrot.drone.groundsdk:groundsdk:7.7.+'
+    runtimeOnly 'com.parrot.drone.groundsdk:arsdkengine:7.7.+'
 }
