@@ -114,10 +114,6 @@ class MainActivity : AppCompatActivity() {
         // All references taken are linked to the activity lifecycle and
         // automatically closed at its destruction.
 
-        // Install flight plan file from assets
-        // NOTE: this should be offloaded to an IO thread, but this
-
-
         // Monitor the auto connection facility.
         groundSdk.getFacility(AutoConnection::class.java) { autoConnection ->
             // Called when the auto connection facility is available and when it changes.
@@ -144,7 +140,6 @@ class MainActivity : AppCompatActivity() {
                 if(rc != null) startRcMonitors()
             }
         }
-
     }
 
     /**
@@ -207,15 +202,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Called on activate button click.
+     * Called on upload button click.
      */
     private fun onUploadClick() {
         val pilotingItf = pilotingItfRef?.get() ?: return
         // Install the flight plan file somewhere on the device FS.
         // NOTE: this is done so to keep things simple for the example, but this should not be done
-        //       this way.
-        //       Asset -> FS copy should be offloaded to an I/O thread in order not to block the main
-        //       thread.
+        //       this way. Asset -> FS copy should be offloaded to an I/O thread in order not to
+        //       block the main thread.
         val flightPlanFile = runCatching {
             assets.open("flightplan.mavlink").use { input ->
                 File.createTempFile("flightplan", ".mavlink", cacheDir).also {
